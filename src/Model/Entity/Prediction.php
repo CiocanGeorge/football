@@ -36,5 +36,6 @@ class Prediction extends Entity
         'under1' => true,
         'over0FirstHalf' => true,
         'under0FirstHalf' => true,
+        'gg' => true,
     ];
 }
