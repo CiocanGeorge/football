@@ -198,6 +198,6 @@ class MatchesTable extends Table
                 ],
                 'Scores.full_time_home IS NOT NULL'
             ])->orderDesc("matches.utcDate"); // Utilizăm LIKE pentru coloana utcDate
-        return $results->toArray();
+        return $results;
     }
 }
