@@ -12,12 +12,12 @@ class CreatePrediction extends AbstractMigration
             'default' => null,
             'null' => false,
         ]);
-        $table->addColumn('over2.5', 'string', [
+        $table->addColumn('over2', 'string', [
             'default' => null,
             'null' => true,
             'limit' => 50,
         ]);
-        $table->addColumn('under2.5', 'string', [
+        $table->addColumn('under2', 'string', [
             'default' => null,
             'null' => true,
             'limit' => 50,
