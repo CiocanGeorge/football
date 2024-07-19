@@ -58,7 +58,7 @@
             <tbody>
                 <?php foreach ($matches as $match) : ?>
                     <tr>
-                        <td><?= h($match->Matches['id']) ?></td>
+                        <td><?= h($match['id']) ?></td>
                         <td><?= date("Y-m-d H:i:s",strtotime($match->Matches['utcDate']." +3 hours")) ?></td>
                         <td><?= h($match->Matches['status']) ?></td>
                         <td>
