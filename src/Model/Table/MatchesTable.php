@@ -55,7 +55,7 @@ class MatchesTable extends Table
             'joinType' => 'INNER',
         ]);
 
-        $this->hasOne('Scores', [
+        $this->hasOne('scores', [
             'foreignKey' => 'match_id',
         ]);
     }
@@ -147,23 +147,23 @@ class MatchesTable extends Table
         }
         $results = self::getObject()->find()
             ->select([
-                'Matches.id',
-                'Matches.utcDate',
-                'Matches.status',
-                'Matches.homeTeamId',
-                'Matches.awayTeamId',
-                'Matches.homeName',
-                'Matches.awayName',
-                'Matches.homeLogo',
-                'Matches.awayLogo',
-                'Scores.full_time_home',
-                'Scores.full_time_away',
-                'Scores.half_time_home',
-                'Scores.half_time_away',
+                'matches.id',
+                'matches.utcDate',
+                'matches.status',
+                'matches.homeTeamId',
+                'matches.awayTeamId',
+                'matches.homeName',
+                'matches.awayName',
+                'matches.homeLogo',
+                'matches.awayLogo',
+                'scores.full_time_home',
+                'scores.full_time_away',
+                'scores.half_time_home',
+                'scores.half_time_away',
             ])
             ->innerJoin(
-                ['Scores' => 'scores'],
-                ['Scores.match_id = Matches.id']
+                ['scores' => 'scores'],
+                ['scores.match_id = satches.id']
             )
             ->where(['matches.utcDate LIKE' => $date . '%']); // Utilizăm LIKE pentru coloana utcDate
         return $results;
@@ -173,30 +173,30 @@ class MatchesTable extends Table
     {
         $results = self::getObject()->find()
             ->select([
-                'Matches.id',
-                'Matches.utcDate',
-                'Matches.status',
-                'Scores.full_time_home',
-                'Scores.full_time_away',
-                'Scores.half_time_home',
-                'Scores.half_time_away',
+                'matches.id',
+                'matches.utcDate',
+                'matches.status',
+                'scores.full_time_home',
+                'scores.full_time_away',
+                'scores.half_time_home',
+                'scores.half_time_away',
             ])
             ->innerJoin(
-                ['Scores' => 'scores'], // Specificăm tabela Scores și aliasul său
-                ['Scores.match_id = Matches.id']
-            ) // Condiția pentru INNER JOIN) // Adăugăm tabela Scores în interogare pentru INNER JOIN
+                ['scores' => 'scores'], // Specificăm tabela scores și aliasul său
+                ['scores.match_id = matches.id']
+            ) // Condiția pentru INNER JOIN) // Adăugăm tabela scores în interogare pentru INNER JOIN
             ->where([
                 'OR' => [
                     [
-                        'Matches.homeTeamId' => $homeTeamId,
-                        'Matches.awayTeamId' => $awayTeamId
+                        'matches.homeTeamId' => $homeTeamId,
+                        'matches.awayTeamId' => $awayTeamId
                     ],
                     [
-                        'Matches.homeTeamId' => $awayTeamId,
-                        'Matches.awayTeamId' => $homeTeamId
+                        'matches.homeTeamId' => $awayTeamId,
+                        'matches.awayTeamId' => $homeTeamId
                     ]
                 ],
-                'Scores.full_time_home IS NOT NULL'
+                'scores.full_time_home IS NOT NULL'
             ])->orderDesc("matches.utcDate"); // Utilizăm LIKE pentru coloana utcDate
         return $results;
     }
