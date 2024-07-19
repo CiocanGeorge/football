@@ -63,7 +63,7 @@ class HomeController extends Controller
         var_dump($matches->toArray());die();
         foreach ($matches as $key => $match) {
          
-            $matches[$key]['Prediction'] = PredictionsTable::getByMatchId($match['Matches']['id']);
+            $matches[$key]['Prediction'] = PredictionsTable::getByMatchId($match['matches']['id']);
         }
 
 
