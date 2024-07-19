@@ -57,6 +57,7 @@
             </thead>
             <tbody>
                 <?php foreach ($matches as $match) : ?>
+                    <?= $match?>
                     <tr>
                         <td><?= h($match['id']) ?></td>
                         <td><?= date("Y-m-d H:i:s",strtotime($match['utcDate']." +3 hours")) ?></td>
@@ -65,7 +66,7 @@
                             <img src="<?= $match['homeLogo'] ?>"/>
                             <?= $match['homeName'] ?>
                         </td>
-                        <td><?= h($match['Scores']['full_time_home']) ?> - <?= h($match['Scores']['full_time_away']) ?></td>
+                        <td><?= h($match['scores']['full_time_home']) ?> - <?= h($match['Scores']['full_time_away']) ?></td>
                         <td>
                             <img src="<?= $match['awayLogo'] ?>"/>
                             <?= $match['awayName'] ?>
