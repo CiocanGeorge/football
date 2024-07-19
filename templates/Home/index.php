@@ -25,7 +25,7 @@
 </style>
 
 
-<form method="post" action="/football/home/index">
+<form method="post" action="/home/index">
     <input type="hidden" name="_csrfToken" value="<?= $this->request->getAttribute('csrfToken') ?>">
 
 
@@ -115,7 +115,7 @@
             const matchesTableBody = $('#matchesTableBody'); // Assuming you have a table body element with id="matchesTableBody"
 
             // Make Ajax request using jQuery
-            $.post('/football/home/index', {
+            $.post('/home/index', {
                     method: 'POST',
                     dataType: 'json',
                     headers: {
