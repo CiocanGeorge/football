@@ -84,6 +84,7 @@ class PredictionsTable extends Table
 
     public static function getByMatchId($matchId)
     {
+        var_dump($matchId);die();
         $query = self::getObject()->find()->where(['matchId' => $matchId])->first();
 
         return $query;
@@ -98,7 +99,7 @@ class PredictionsTable extends Table
             {
                 break;
             }
-            $predictions[$key] = $match['Scores']['full_time_home'] + $match['Scores']['full_time_away'];
+            $predictions[$key] = $match['scores']['full_time_home'] + $match['scores']['full_time_away'];
         }
         $procent = 0;
         foreach($predictions as $key => $pred)
@@ -119,7 +120,7 @@ class PredictionsTable extends Table
             {
                 break;
             }
-            $predictions[$key] = $match['Scores']['full_time_home'] + $match['Scores']['full_time_away'];
+            $predictions[$key] = $match['scores']['full_time_home'] + $match['scores']['full_time_away'];
         }
         $procent = 0;
         foreach($predictions as $key => $pred)
@@ -140,7 +141,7 @@ class PredictionsTable extends Table
             {
                 break;
             }
-            $predictions[$key] = $match['Scores']['full_time_home'] + $match['Scores']['full_time_away'];
+            $predictions[$key] = $match['scores']['full_time_home'] + $match['scores']['full_time_away'];
         }
         $procent = 0;
         foreach($predictions as $key => $pred)
@@ -161,7 +162,7 @@ class PredictionsTable extends Table
             {
                 break;
             }
-            $predictions[$key] = $match['Scores']['half_time_home'] + $match['Scores']['half_time_away'];
+            $predictions[$key] = $match['scores']['half_time_home'] + $match['scores']['half_time_away'];
         }
         $procent = 0;
         foreach($predictions as $key => $pred)
