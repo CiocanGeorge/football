@@ -19,7 +19,7 @@ class GeneratePredictionShell extends Shell
         $predictionsTable = TableRegistry::getTableLocator()->get('Predictions');
         foreach ($months as $key => $month) {
             echo ++$key."/".count($months)."\n";
-            $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+            $daysInMonth = date('t', strtotime("$year-$month-01"));
             for ($day = 1; $day <= $daysInMonth; $day++) {
                 $date = date("Y-m-d",strtotime("$year-$month-$day"));
                 $matchs = MatchesTable::getByDate($date);
