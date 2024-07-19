@@ -60,6 +60,8 @@ class HomeController extends Controller
         // Dacă cererea este Ajax, returnează doar datele în format JSON
         $matches = MatchesTable::getByDate($date);
         foreach ($matches as $key => $match) {
+            echo "<pre>";
+            var_dump($match);die();
             $matches[$key]['Prediction'] = PredictionsTable::getByMatchId($match['Matches']['id']);
         }
 
