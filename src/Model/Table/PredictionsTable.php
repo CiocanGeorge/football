@@ -84,7 +84,6 @@ class PredictionsTable extends Table
 
     public static function getByMatchId($matchId)
     {
-        var_dump($matchId);die();
         $query = self::getObject()->find()->where(['matchId' => $matchId])->first();
 
         return $query;
