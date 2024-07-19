@@ -66,15 +66,15 @@
                             <img src="<?= $match['homeLogo'] ?>"/>
                             <?= $match['homeName'] ?>
                         </td>
-                        <td><?= h($match['scores']['full_time_home']) ?> - <?= h($match['Scores']['full_time_away']) ?></td>
+                        <td><?= h($match['scores']['full_time_home']) ?> - <?= h($match['scores']['full_time_away']) ?></td>
                         <td>
                             <img src="<?= $match['awayLogo'] ?>"/>
                             <?= $match['awayName'] ?>
                         </td>
-                        <td class="<?= ($match['Scores']['full_time_home'] + $match['Scores']['full_time_away']) > 0 ? 'win' : (!empty($match['Scores']['full_time_home']) || !empty($match['Scores']['full_time_away'] || $match['Scores']['full_time_home'] !== null || $match['Scores']['full_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over0']) ? intval($match['Prediction']['over0'])."%" : "-" ?></td>
-                        <td class="<?= ($match['Scores']['full_time_home'] + $match['Scores']['full_time_away']) > 1 ? 'win' : (!empty($match['Scores']['full_time_home']) || !empty($match['Scores']['full_time_away'] || $match['Scores']['full_time_home'] !== null || $match['Scores']['full_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over1']) ? intval($match['Prediction']['over1'])."%" : "-" ?></td>
-                        <td class="<?= ($match['Scores']['full_time_home'] + $match['Scores']['full_time_away']) > 2 ? 'win' : (!empty($match['Scores']['full_time_home']) || !empty($match['Scores']['full_time_away'] || $match['Scores']['full_time_home'] !== null || $match['Scores']['full_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over1']) ? intval($match['Prediction']['over1'])."%" : "-" ?></td>
-                        <td class="<?= ($match['Scores']['half_time_home'] + $match['Scores']['half_time_away']) > 0 ? 'win' : (!empty($match['Scores']['half_time_home']) || !empty($match['Scores']['half_time_away'] || $match['Scores']['half_time_home'] !== null || $match['Scores']['half_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over0FirstHalf']) ? intval($match['Prediction']['over0FirstHalf'])."%" : "-" ?></td>
+                        <td class="<?= ($match['Scores']['full_time_home'] + $match['scores']['full_time_away']) > 0 ? 'win' : (!empty($match['scores']['full_time_home']) || !empty($match['scores']['full_time_away'] || $match['scores']['full_time_home'] !== null || $match['scores']['full_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over0']) ? intval($match['Prediction']['over0'])."%" : "-" ?></td>
+                        <td class="<?= ($match['scores']['full_time_home'] + $match['scores']['full_time_away']) > 1 ? 'win' : (!empty($match['scores']['full_time_home']) || !empty($match['scores']['full_time_away'] || $match['scores']['full_time_home'] !== null || $match['scores']['full_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over1']) ? intval($match['Prediction']['over1'])."%" : "-" ?></td>
+                        <td class="<?= ($match['scores']['full_time_home'] + $match['scores']['full_time_away']) > 2 ? 'win' : (!empty($match['scores']['full_time_home']) || !empty($match['scores']['full_time_away'] || $match['scores']['full_time_home'] !== null || $match['scores']['full_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over1']) ? intval($match['Prediction']['over1'])."%" : "-" ?></td>
+                        <td class="<?= ($match['scores']['half_time_home'] + $match['scores']['half_time_away']) > 0 ? 'win' : (!empty($match['scores']['half_time_home']) || !empty($match['scores']['half_time_away'] || $match['scores']['half_time_home'] !== null || $match['scores']['half_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over0FirstHalf']) ? intval($match['Prediction']['over0FirstHalf'])."%" : "-" ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -132,9 +132,9 @@
                         <td>${match.Matches.utcDate}</td>
                         <td>${match.Matches.status}</td>
                         <td>${match.Matches.homeName}</td>
-                        <td>${match.Scores.full_time_home} - ${match.Scores.full_time_away}</td>
+                        <td>${match.scores.full_time_home} - ${match.scores.full_time_away}</td>
                         <td>${match.Matches.awayName}</td>
-                        <td class="${(match.Scores.full_time_home + match.Scores.full_time_away) > 0 ? 'win' : (!empty(match.Scores.full_time_home) ? 'lose' : '')}">${!empty(match.Predictions.over0) ? match.Predictions.over0 : '-'}</td>
+                        <td class="${(match.scores.full_time_home + match.scores.full_time_away) > 0 ? 'win' : (!empty(match.scores.full_time_home) ? 'lose' : '')}">${!empty(match.Predictions.over0) ? match.Predictions.over0 : '-'}</td>
                     </tr>
                 `;
                         matchesTableBody.append(row);
