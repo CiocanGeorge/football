@@ -2,6 +2,7 @@
 
 namespace App\Shell;
 
+use App\Model\Table\ApiTable;
 use Cake\Console\Shell;
 use Cake\ORM\TableRegistry;
 use Exception;
@@ -11,9 +12,10 @@ class OneTimeRunShell extends Shell
 
     public function addCompetitions()
     {
+        $apiKey = ApiTable::getApi();
         $uri = 'http://api.football-data.org/v4/competitions/';
         $reqPrefs['http']['method'] = 'GET';
-        $reqPrefs['http']['header'] = 'X-Auth-Token: b10aca13f2654a608ccf860165b9b898'; // Înlocuiți cu cheia API reală
+        $reqPrefs['http']['header'] = 'X-Auth-Token: '.$apiKey; // Înlocuiți cu cheia API reală
 
         $stream_context = stream_context_create($reqPrefs);
         $response = file_get_contents($uri, false, $stream_context);
