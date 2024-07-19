@@ -163,7 +163,7 @@ class MatchesTable extends Table
             ])
             ->innerJoin(
                 ['scores' => 'scores'],
-                ['scores.match_id = satches.id']
+                ['scores.match_id = matches.id']
             )
             ->where(['matches.utcDate LIKE' => $date . '%']); // Utilizăm LIKE pentru coloana utcDate
         return $results;
