@@ -166,7 +166,7 @@ class MatchesTable extends Table
                 ['Scores.match_id = Matches.id']
             )
             ->where(['matches.utcDate LIKE' => $date . '%']); // Utilizăm LIKE pentru coloana utcDate
-        return $results->toArray();
+        return $results;
     }
 
     public static function getLast5Match($homeTeamId, $awayTeamId)
