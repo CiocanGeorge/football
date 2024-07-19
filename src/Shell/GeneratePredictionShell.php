@@ -28,7 +28,7 @@ class GeneratePredictionShell extends Shell
                     {
                         var_dump($match);die();
                     }
-                    $last5Match = MatchesTable::getLast5Match($match['Matches']['homeTeamId'], $match['Matches']['awayTeamId']);
+                    $last5Match = MatchesTable::getLast5Match($match['matches']['homeTeamId'], $match['matches']['awayTeamId']);
                     if (count($last5Match) > 3) {
                         $procentOver0 = PredictionsTable::getOver0($last5Match);
                         $procentOver1 = PredictionsTable::getOver1($last5Match);
@@ -36,16 +36,16 @@ class GeneratePredictionShell extends Shell
                         $procentOver0FirstHalf = PredictionsTable::getOver0FirstHalf($last5Match);
 
                         $entity = $predictionsTable->findOrCreate([
-                            'matchId ' => $match['Matches']['id']
+                            'matchId ' => $match['matches']['id']
                         ], function ($entity) use ($procentOver0,$procentOver1,$procentOver2,$procentOver0FirstHalf, $match) {
-                            $entity['matchId'] = $match['Matches']['id'];
+                            $entity['matchId'] = $match['matches']['id'];
                             $entity['over0'] = $procentOver0;
                             $entity['over1'] = $procentOver1;
                             $entity['over2'] = $procentOver2;
                             $entity['over0FirstHalf'] = $procentOver0FirstHalf;
                             // Alte câmpuri pe care le dorești să le salvezi
                         });
-                        $entity['matchId'] = $match['Matches']['id'];
+                        $entity['matchId'] = $match['matches']['id'];
                         $entity['over0'] = $procentOver0;
                         $entity['over1'] = $procentOver1;
                         $entity['over2'] = $procentOver2;
