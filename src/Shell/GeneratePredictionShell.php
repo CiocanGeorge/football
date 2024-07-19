@@ -36,16 +36,16 @@ class GeneratePredictionShell extends Shell
                         $procentOver0FirstHalf = PredictionsTable::getOver0FirstHalf($last5Match);
 
                         $entity = $predictionsTable->findOrCreate([
-                            'matchId ' => $match['matches']['id']
+                            'matchId ' => $match['id']
                         ], function ($entity) use ($procentOver0,$procentOver1,$procentOver2,$procentOver0FirstHalf, $match) {
-                            $entity['matchId'] = $match['matches']['id'];
+                            $entity['matchId'] = $match['id'];
                             $entity['over0'] = $procentOver0;
                             $entity['over1'] = $procentOver1;
                             $entity['over2'] = $procentOver2;
                             $entity['over0FirstHalf'] = $procentOver0FirstHalf;
                             // Alte câmpuri pe care le dorești să le salvezi
                         });
-                        $entity['matchId'] = $match['matches']['id'];
+                        $entity['matchId'] = $match['id'];
                         $entity['over0'] = $procentOver0;
                         $entity['over1'] = $procentOver1;
                         $entity['over2'] = $procentOver2;
