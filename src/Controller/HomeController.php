@@ -59,26 +59,8 @@ class HomeController extends Controller
         }
         // Dacă cererea este Ajax, returnează doar datele în format JSON
         $matches = MatchesTable::getByDate($date);
+        var_dump($matchs);die();
         foreach ($matches as $key => $match) {
-            // $prediction = PredictionsTable::getByMatchId($match['Matches']['id']);
-            // if (empty($prediction['id'])) {
-            //     $last5Match = MatchesTable::getLast5Match($match['Matches']['homeTeamId'], $match['Matches']['awayTeamId']);
-            //     if (count($last5Match) > 1) {
-            //         $procentOver0 = PredictionsTable::getOver0($last5Match);
-
-            //         $entity = $predictionsTable->findOrCreate([
-            //             'matchId ' => $match['Matches']['id']
-            //         ], function ($entity) use ($procentOver0, $match) {
-            //             $entity['matchId'] = $match['Matches']['id'];
-            //             $entity['over0'] = $procentOver0;
-            //             // Alte câmpuri pe care le dorești să le salvezi
-            //         });
-            //         $entity['matchId'] = $match['Matches']['id'];
-            //         $entity['over0'] = $procentOver0;
-            //         $predictionsTable->save($entity);
-            //     }
-            // }
-
             $matches[$key]['Prediction'] = PredictionsTable::getByMatchId($match['Matches']['id']);
         }
 
