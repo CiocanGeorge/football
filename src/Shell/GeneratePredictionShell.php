@@ -28,7 +28,7 @@ class GeneratePredictionShell extends Shell
                     {
                         var_dump($match);die();
                     }
-                    $last5Match = MatchesTable::getLast5Match($match['matches']['homeTeamId'], $match['matches']['awayTeamId']);
+                    $last5Match = MatchesTable::getLast5Match($match['homeTeamId'], $match['awayTeamId']);
                     if (count($last5Match) > 3) {
                         $procentOver0 = PredictionsTable::getOver0($last5Match);
                         $procentOver1 = PredictionsTable::getOver1($last5Match);
