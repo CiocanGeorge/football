@@ -59,16 +59,16 @@
                 <?php foreach ($matches as $match) : ?>
                     <tr>
                         <td><?= h($match['id']) ?></td>
-                        <td><?= date("Y-m-d H:i:s",strtotime($match->Matches['utcDate']." +3 hours")) ?></td>
-                        <td><?= h($match->Matches['status']) ?></td>
+                        <td><?= date("Y-m-d H:i:s",strtotime($match['utcDate']." +3 hours")) ?></td>
+                        <td><?= h($match['status']) ?></td>
                         <td>
-                            <img src="<?= $match->Matches['homeLogo'] ?>"/>
-                            <?= $match->Matches['homeName'] ?>
+                            <img src="<?= $match['homeLogo'] ?>"/>
+                            <?= $match['homeName'] ?>
                         </td>
                         <td><?= h($match['Scores']['full_time_home']) ?> - <?= h($match['Scores']['full_time_away']) ?></td>
                         <td>
-                            <img src="<?= $match->Matches['awayLogo'] ?>"/>
-                            <?= $match->Matches['awayName'] ?>
+                            <img src="<?= $match['awayLogo'] ?>"/>
+                            <?= $match['awayName'] ?>
                         </td>
                         <td class="<?= ($match['Scores']['full_time_home'] + $match['Scores']['full_time_away']) > 0 ? 'win' : (!empty($match['Scores']['full_time_home']) || !empty($match['Scores']['full_time_away'] || $match['Scores']['full_time_home'] !== null || $match['Scores']['full_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over0']) ? intval($match['Prediction']['over0'])."%" : "-" ?></td>
                         <td class="<?= ($match['Scores']['full_time_home'] + $match['Scores']['full_time_away']) > 1 ? 'win' : (!empty($match['Scores']['full_time_home']) || !empty($match['Scores']['full_time_away'] || $match['Scores']['full_time_home'] !== null || $match['Scores']['full_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over1']) ? intval($match['Prediction']['over1'])."%" : "-" ?></td>
