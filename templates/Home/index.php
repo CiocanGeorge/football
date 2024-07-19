@@ -53,6 +53,7 @@
                     <th><?= __('Peste 1.5') ?></th>
                     <th><?= __('Peste 2.5') ?></th>
                     <th><?= __('Peste 0.5 prima repriza') ?></th>
+                    <th><?= __('GG') ?></th>
                 </tr>
             </thead>
             <tbody>
@@ -74,6 +75,7 @@
                         <td class="<?= ($match['scores']['full_time_home'] + $match['scores']['full_time_away']) > 1 ? 'win' : (!empty($match['scores']['full_time_home']) || !empty($match['scores']['full_time_away'] || $match['scores']['full_time_home'] !== null || $match['scores']['full_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over1']) ? intval($match['Prediction']['over1'])."%" : "-" ?></td>
                         <td class="<?= ($match['scores']['full_time_home'] + $match['scores']['full_time_away']) > 2 ? 'win' : (!empty($match['scores']['full_time_home']) || !empty($match['scores']['full_time_away'] || $match['scores']['full_time_home'] !== null || $match['scores']['full_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over1']) ? intval($match['Prediction']['over1'])."%" : "-" ?></td>
                         <td class="<?= ($match['scores']['half_time_home'] + $match['scores']['half_time_away']) > 0 ? 'win' : (!empty($match['scores']['half_time_home']) || !empty($match['scores']['half_time_away'] || $match['scores']['half_time_home'] !== null || $match['scores']['half_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over0FirstHalf']) ? intval($match['Prediction']['over0FirstHalf'])."%" : "-" ?></td>
+                        <td class="<?= ($match['scores']['full_time_home'] > 0 && $match['scores']['full_time_away'] > 0) ? 'win' : (!empty($match['scores']['full_time_home']) || !empty($match['scores']['full_time_away'] || $match['scores']['full_time_home'] !== null || $match['scores']['full_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['gg']) ? intval($match['Prediction']['gg'])."%" : "-" ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
