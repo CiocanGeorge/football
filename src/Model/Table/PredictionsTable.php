@@ -172,4 +172,25 @@ class PredictionsTable extends Table
 
         return $procent;
     }
+
+    public static function getGG($arrayMatch)
+    {
+        $predictions = [];
+        foreach($arrayMatch as $key => $match)
+        {
+            if($key == 5)
+            {
+                break;
+            }
+            $predictions[$key] = ($match['scores']['full_time_home'] > 0) && ($match['scores']['full_time_away'] > 0);
+        }
+        $procent = 0;
+        foreach($predictions as $key => $pred)
+        {
+           $procent += $pred ? 100 : 0;
+        }
+        $procent = $procent/count($predictions);
+
+        return $procent;
+    }
 }
