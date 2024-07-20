@@ -24,48 +24,13 @@
         max-height: 50px;
     }
 
-    /* Media queries for mobile devices */
+    /* Make the table scrollable on small screens */
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    /* Media queries for smaller screens to ensure table remains intact */
     @media (max-width: 768px) {
-        .table-responsive {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            display: block;
-            overflow-x: auto;
-            white-space: nowrap;
-        }
-
-        th, td {
-            display: inline-block;
-            width: auto;
-            vertical-align: middle;
-        }
-
-        thead {
-            display: none;
-        }
-
-        tbody {
-            display: block;
-        }
-
-        tr {
-            display: block;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            padding: 10px;
-        }
-
-        td::before {
-            content: attr(data-label);
-            font-weight: bold;
-            display: inline-block;
-            width: 150px;
-            text-align: left;
-        }
-
         .matches.index .d-flex {
             flex-direction: column;
             align-items: flex-start;
@@ -79,8 +44,13 @@
             margin: 5px 0;
             width: 100%;
         }
+
+        th, td {
+            white-space: nowrap;
+        }
     }
 </style>
+
 
 
 
