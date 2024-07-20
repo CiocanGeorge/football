@@ -29,7 +29,6 @@
         overflow-x: auto;
     }
 
-    /* Media queries for smaller screens to ensure table remains intact */
     @media (max-width: 768px) {
         .matches.index .d-flex {
             flex-direction: column;
@@ -57,8 +56,6 @@
 <form method="post" action="/home/index">
     <input type="hidden" name="_csrfToken" value="<?= $this->request->getAttribute('csrfToken') ?>">
 
-
-
     <div class="matches index content">
         <div class="d-flex align-items-center my-3 justify-content-between">
             <h3 class="mr-3"><?= __('Matches') ?></h3>
@@ -68,7 +65,7 @@
                 <button id="nextDay" class="btn btn-outline-secondary">&gt;</button>
             </div>
         </div>
-        <div class="table-responsive"> 
+        <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -85,11 +82,11 @@
                         <th><?= __('GG') ?></th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="matchesTableBody">
                     <?php foreach ($matches as $match) : ?>
                         <tr>
                             <td><?= h($match['id']) ?></td>
-                            <td><?= date("Y-m-d H:i:s",strtotime($match['utcDate']." +3 hours")) ?></td>
+                            <td><?= date("Y-m-d H:i:s", strtotime($match['utcDate']." +3 hours")) ?></td>
                             <td><?= h($match['status']) ?></td>
                             <td>
                                 <img src="<?= $match['homeLogo'] ?>"/>
@@ -100,11 +97,11 @@
                                 <img src="<?= $match['awayLogo'] ?>"/>
                                 <?= $match['awayName'] ?>
                             </td>
-                            <td class="<?= ($match['scores']['full_time_home'] + $match['scores']['full_time_away']) > 0 ? 'win' : (!empty($match['scores']['full_time_home']) || !empty($match['scores']['full_time_away'] || $match['scores']['full_time_home'] !== null || $match['scores']['full_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over0']) ? intval($match['Prediction']['over0'])."%" : "-" ?></td>
-                            <td class="<?= ($match['scores']['full_time_home'] + $match['scores']['full_time_away']) > 1 ? 'win' : (!empty($match['scores']['full_time_home']) || !empty($match['scores']['full_time_away'] || $match['scores']['full_time_home'] !== null || $match['scores']['full_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over1']) ? intval($match['Prediction']['over1'])."%" : "-" ?></td>
-                            <td class="<?= ($match['scores']['full_time_home'] + $match['scores']['full_time_away']) > 2 ? 'win' : (!empty($match['scores']['full_time_home']) || !empty($match['scores']['full_time_away'] || $match['scores']['full_time_home'] !== null || $match['scores']['full_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over1']) ? intval($match['Prediction']['over1'])."%" : "-" ?></td>
-                            <td class="<?= ($match['scores']['half_time_home'] + $match['scores']['half_time_away']) > 0 ? 'win' : (!empty($match['scores']['half_time_home']) || !empty($match['scores']['half_time_away'] || $match['scores']['half_time_home'] !== null || $match['scores']['half_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over0FirstHalf']) ? intval($match['Prediction']['over0FirstHalf'])."%" : "-" ?></td>
-                            <td class="<?= ($match['scores']['full_time_home'] > 0 && $match['scores']['full_time_away'] > 0) ? 'win' : (!empty($match['scores']['full_time_home']) || !empty($match['scores']['full_time_away'] || $match['scores']['full_time_home'] !== null || $match['scores']['full_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['gg']) ? intval($match['Prediction']['gg'])."%" : "-" ?></td>
+                            <td class="<?= ($match['scores']['full_time_home'] + $match['scores']['full_time_away']) > 0 ? 'win' : ( !empty($match['scores']['full_time_home']) || !empty($match['scores']['full_time_away']) || $match['scores']['full_time_home'] !== null || $match['scores']['full_time_away'] !== null ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over0']) ? intval($match['Prediction']['over0'])."%" : "-" ?></td>
+                            <td class="<?= ($match['scores']['full_time_home'] + $match['scores']['full_time_away']) > 1 ? 'win' : (!empty($match['scores']['full_time_home']) || !empty($match['scores']['full_time_away']) || $match['scores']['full_time_home'] !== null || $match['scores']['full_time_away'] !== null ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over1']) ? intval($match['Prediction']['over1'])."%" : "-" ?></td>
+                            <td class="<?= ($match['scores']['full_time_home'] + $match['scores']['full_time_away']) > 2 ? 'win' : (!empty($match['scores']['full_time_home']) || !empty($match['scores']['full_time_away']) || $match['scores']['full_time_home'] !== null || $match['scores']['full_time_away'] !== null ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over1']) ? intval($match['Prediction']['over1'])."%" : "-" ?></td>
+                            <td class="<?= ($match['scores']['half_time_home'] + $match['scores']['half_time_away']) > 0 ? 'win' : (!empty($match['scores']['half_time_home']) || !empty($match['scores']['half_time_away']) || $match['scores']['half_time_home'] !== null || $match['scores']['half_time_away'] !== null ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over0FirstHalf']) ? intval($match['Prediction']['over0FirstHalf'])."%" : "-" ?></td>
+                            <td class="<?= ($match['scores']['full_time_home'] > 0 && $match['scores']['full_time_away'] > 0) ? 'win' : (!empty($match['scores']['full_time_home']) || !empty($match['scores']['full_time_away']) || $match['scores']['full_time_home'] !== null || $match['scores']['full_time_away'] !== null ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['gg']) ? intval($match['Prediction']['gg'])."%" : "-" ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -112,6 +109,7 @@
         </div>
     </div>
 </form>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
