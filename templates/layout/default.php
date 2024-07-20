@@ -49,7 +49,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <a href="<?= $this->Url->build('/home/index') ?>"><span>FTB</span>Predict</a>
         </div>
         <div class="top-nav-links">
-            <a target="_blank" rel="noopener" href="/home/index">AZI</a>
+            <a rel="noopener" href="/home/index">AZI</a>
         </div>
     </nav>
     <main class="main mt-2">
