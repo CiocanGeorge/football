@@ -39,47 +39,48 @@
                 <button id="nextDay" class="btn btn-outline-secondary">&gt;</button>
             </div>
         </div>
-
-        <table cellpadding="0" cellspacing="0" class="table table-bordered table-striped table-responsive">
-            <thead>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <th><?= __('Date') ?></th>
-                    <th><?= __('Status') ?></th>
-                    <th><?= __('Home Team') ?></th>
-                    <th><?= __('Score') ?></th>
-                    <th><?= __('Away Team') ?></th>
-                    <th><?= __('Peste 0.5') ?></th>
-                    <th><?= __('Peste 1.5') ?></th>
-                    <th><?= __('Peste 2.5') ?></th>
-                    <th><?= __('Peste 0.5 prima repriza') ?></th>
-                    <th><?= __('GG') ?></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($matches as $match) : ?>
+        <div class="table-responsive"> 
+            <table class="table table-bordered">
+                <thead>
                     <tr>
-                        <td><?= h($match['id']) ?></td>
-                        <td><?= date("Y-m-d H:i:s",strtotime($match['utcDate']." +3 hours")) ?></td>
-                        <td><?= h($match['status']) ?></td>
-                        <td>
-                            <img src="<?= $match['homeLogo'] ?>"/>
-                            <?= $match['homeName'] ?>
-                        </td>
-                        <td><?= h($match['scores']['full_time_home']) ?> - <?= h($match['scores']['full_time_away']) ?></td>
-                        <td>
-                            <img src="<?= $match['awayLogo'] ?>"/>
-                            <?= $match['awayName'] ?>
-                        </td>
-                        <td class="<?= ($match['scores']['full_time_home'] + $match['scores']['full_time_away']) > 0 ? 'win' : (!empty($match['scores']['full_time_home']) || !empty($match['scores']['full_time_away'] || $match['scores']['full_time_home'] !== null || $match['scores']['full_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over0']) ? intval($match['Prediction']['over0'])."%" : "-" ?></td>
-                        <td class="<?= ($match['scores']['full_time_home'] + $match['scores']['full_time_away']) > 1 ? 'win' : (!empty($match['scores']['full_time_home']) || !empty($match['scores']['full_time_away'] || $match['scores']['full_time_home'] !== null || $match['scores']['full_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over1']) ? intval($match['Prediction']['over1'])."%" : "-" ?></td>
-                        <td class="<?= ($match['scores']['full_time_home'] + $match['scores']['full_time_away']) > 2 ? 'win' : (!empty($match['scores']['full_time_home']) || !empty($match['scores']['full_time_away'] || $match['scores']['full_time_home'] !== null || $match['scores']['full_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over1']) ? intval($match['Prediction']['over1'])."%" : "-" ?></td>
-                        <td class="<?= ($match['scores']['half_time_home'] + $match['scores']['half_time_away']) > 0 ? 'win' : (!empty($match['scores']['half_time_home']) || !empty($match['scores']['half_time_away'] || $match['scores']['half_time_home'] !== null || $match['scores']['half_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over0FirstHalf']) ? intval($match['Prediction']['over0FirstHalf'])."%" : "-" ?></td>
-                        <td class="<?= ($match['scores']['full_time_home'] > 0 && $match['scores']['full_time_away'] > 0) ? 'win' : (!empty($match['scores']['full_time_home']) || !empty($match['scores']['full_time_away'] || $match['scores']['full_time_home'] !== null || $match['scores']['full_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['gg']) ? intval($match['Prediction']['gg'])."%" : "-" ?></td>
+                        <th><?= __('Id') ?></th>
+                        <th><?= __('Date') ?></th>
+                        <th><?= __('Status') ?></th>
+                        <th><?= __('Home Team') ?></th>
+                        <th><?= __('Score') ?></th>
+                        <th><?= __('Away Team') ?></th>
+                        <th><?= __('Peste 0.5') ?></th>
+                        <th><?= __('Peste 1.5') ?></th>
+                        <th><?= __('Peste 2.5') ?></th>
+                        <th><?= __('Peste 0.5 prima repriza') ?></th>
+                        <th><?= __('GG') ?></th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php foreach ($matches as $match) : ?>
+                        <tr>
+                            <td><?= h($match['id']) ?></td>
+                            <td><?= date("Y-m-d H:i:s",strtotime($match['utcDate']." +3 hours")) ?></td>
+                            <td><?= h($match['status']) ?></td>
+                            <td>
+                                <img src="<?= $match['homeLogo'] ?>"/>
+                                <?= $match['homeName'] ?>
+                            </td>
+                            <td><?= h($match['scores']['full_time_home']) ?> - <?= h($match['scores']['full_time_away']) ?></td>
+                            <td>
+                                <img src="<?= $match['awayLogo'] ?>"/>
+                                <?= $match['awayName'] ?>
+                            </td>
+                            <td class="<?= ($match['scores']['full_time_home'] + $match['scores']['full_time_away']) > 0 ? 'win' : (!empty($match['scores']['full_time_home']) || !empty($match['scores']['full_time_away'] || $match['scores']['full_time_home'] !== null || $match['scores']['full_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over0']) ? intval($match['Prediction']['over0'])."%" : "-" ?></td>
+                            <td class="<?= ($match['scores']['full_time_home'] + $match['scores']['full_time_away']) > 1 ? 'win' : (!empty($match['scores']['full_time_home']) || !empty($match['scores']['full_time_away'] || $match['scores']['full_time_home'] !== null || $match['scores']['full_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over1']) ? intval($match['Prediction']['over1'])."%" : "-" ?></td>
+                            <td class="<?= ($match['scores']['full_time_home'] + $match['scores']['full_time_away']) > 2 ? 'win' : (!empty($match['scores']['full_time_home']) || !empty($match['scores']['full_time_away'] || $match['scores']['full_time_home'] !== null || $match['scores']['full_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over1']) ? intval($match['Prediction']['over1'])."%" : "-" ?></td>
+                            <td class="<?= ($match['scores']['half_time_home'] + $match['scores']['half_time_away']) > 0 ? 'win' : (!empty($match['scores']['half_time_home']) || !empty($match['scores']['half_time_away'] || $match['scores']['half_time_home'] !== null || $match['scores']['half_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over0FirstHalf']) ? intval($match['Prediction']['over0FirstHalf'])."%" : "-" ?></td>
+                            <td class="<?= ($match['scores']['full_time_home'] > 0 && $match['scores']['full_time_away'] > 0) ? 'win' : (!empty($match['scores']['full_time_home']) || !empty($match['scores']['full_time_away'] || $match['scores']['full_time_home'] !== null || $match['scores']['full_time_away'] !== null) ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['gg']) ? intval($match['Prediction']['gg'])."%" : "-" ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </form>
 
