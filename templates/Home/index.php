@@ -26,7 +26,20 @@
 
     /* Make the table scrollable on small screens */
     .table-responsive {
+        width: 100%;
         overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        min-width: 600px; /* or another suitable minimum width */
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 8px;
+        border: 1px solid #ddd;
+        white-space: nowrap;
     }
 
     @media (max-width: 768px) {
@@ -43,12 +56,9 @@
             margin: 5px 0;
             width: 100%;
         }
-
-        th, td {
-            white-space: nowrap;
-        }
     }
 </style>
+
 
 
 
@@ -61,7 +71,7 @@
             <h3 class="mr-3"><?= __('Matches') ?></h3>
             <div class="d-flex">
                 <button id="prevDay" class="btn btn-outline-secondary">&lt;</button>
-                <input type="date" id="datePicker" name="data" class="form-control mx-2" value="<?= $data?>">
+                <input type="date" id="datePicker" name="data" class="form-control mx-2" value="<?= $data ?>">
                 <button id="nextDay" class="btn btn-outline-secondary">&gt;</button>
             </div>
         </div>
@@ -97,7 +107,7 @@
                                 <img src="<?= $match['awayLogo'] ?>"/>
                                 <?= $match['awayName'] ?>
                             </td>
-                            <td class="<?= ($match['scores']['full_time_home'] + $match['scores']['full_time_away']) > 0 ? 'win' : ( !empty($match['scores']['full_time_home']) || !empty($match['scores']['full_time_away']) || $match['scores']['full_time_home'] !== null || $match['scores']['full_time_away'] !== null ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over0']) ? intval($match['Prediction']['over0'])."%" : "-" ?></td>
+                            <td class="<?= ($match['scores']['full_time_home'] + $match['scores']['full_time_away']) > 0 ? 'win' : (!empty($match['scores']['full_time_home']) || !empty($match['scores']['full_time_away']) || $match['scores']['full_time_home'] !== null || $match['scores']['full_time_away'] !== null ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over0']) ? intval($match['Prediction']['over0'])."%" : "-" ?></td>
                             <td class="<?= ($match['scores']['full_time_home'] + $match['scores']['full_time_away']) > 1 ? 'win' : (!empty($match['scores']['full_time_home']) || !empty($match['scores']['full_time_away']) || $match['scores']['full_time_home'] !== null || $match['scores']['full_time_away'] !== null ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over1']) ? intval($match['Prediction']['over1'])."%" : "-" ?></td>
                             <td class="<?= ($match['scores']['full_time_home'] + $match['scores']['full_time_away']) > 2 ? 'win' : (!empty($match['scores']['full_time_home']) || !empty($match['scores']['full_time_away']) || $match['scores']['full_time_home'] !== null || $match['scores']['full_time_away'] !== null ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over1']) ? intval($match['Prediction']['over1'])."%" : "-" ?></td>
                             <td class="<?= ($match['scores']['half_time_home'] + $match['scores']['half_time_away']) > 0 ? 'win' : (!empty($match['scores']['half_time_home']) || !empty($match['scores']['half_time_away']) || $match['scores']['half_time_home'] !== null || $match['scores']['half_time_away'] !== null ? 'lose' : ''); ?>"><?= !empty($match['Prediction']['over0FirstHalf']) ? intval($match['Prediction']['over0FirstHalf'])."%" : "-" ?></td>
@@ -109,6 +119,7 @@
         </div>
     </div>
 </form>
+
 
 
 <script>
