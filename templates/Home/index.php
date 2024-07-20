@@ -33,7 +33,7 @@
     <div class="matches index content">
         <div class="row">
             <h3 class="col-md-3 col-12"><?= __('Matches') ?></h3>
-            <div class="d-flex col-md-9 col-12">
+            <div class="d-flex col-md-9 col-12 justify-content-end">
                 <button id="prevDay" class="btn btn-outline-secondary">&lt;</button>
                 <input type="date" id="datePicker" name="data" class="form-control mx-2" value="<?= $data?>">
                 <button id="nextDay" class="btn btn-outline-secondary">&gt;</button>
