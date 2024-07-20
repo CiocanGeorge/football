@@ -73,6 +73,59 @@ hr {
 #url-rewriting-warning {
     display: none;
 }
+   /* Navigation bar styles */
+   .top-nav {
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.top-nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: background-color 0.3s;
+}
+
+.top-nav a:hover {
+    background-color: #575757;
+    border-radius: 5px;
+}
+
+.top-nav-title a {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.top-nav-links {
+    display: flex;
+}
+
+.top-nav-links a {
+    margin-left: 10px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .top-nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .top-nav-links {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        margin-top: 10px;
+    }
+
+    .top-nav-links a {
+        margin-left: 0;
+    }
+}
 @media only screen and (max-width: 600px) {
     .content {
       padding: 0.5rem;
