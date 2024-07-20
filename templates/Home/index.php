@@ -22,6 +22,55 @@
         max-width: 50px;
         max-height: 50px;
     }
+     /* Media queries for mobile devices */
+     @media (max-width: 768px) {
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        thead {
+            display: block;
+        }
+
+        tbody {
+            display: block;
+            width: 100%;
+        }
+
+        tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        th,
+        td {
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .matches.index .d-flex {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .matches.index .d-flex button {
+            margin: 5px 0;
+        }
+
+        .matches.index .d-flex input {
+            margin: 5px 0;
+            width: 100%;
+        }
+    }
 </style>
 
 
