@@ -9,21 +9,23 @@
         color: #FFFFFF;
     }
 
-    th,
-    td {
+    th, td {
         text-align: center;
+        vertical-align: middle;
     }
 
     input.form-control {
         max-width: 300px;
         border-radius: 5px;
     }
-    img{
+
+    img {
         max-width: 50px;
         max-height: 50px;
     }
-     /* Media queries for mobile devices */
-     @media (max-width: 768px) {
+
+    /* Media queries for mobile devices */
+    @media (max-width: 768px) {
         .table-responsive {
             overflow-x: auto;
         }
@@ -35,26 +37,33 @@
             white-space: nowrap;
         }
 
+        th, td {
+            display: inline-block;
+            width: auto;
+            vertical-align: middle;
+        }
+
         thead {
-            display: block;
+            display: none;
         }
 
         tbody {
             display: block;
-            width: 100%;
         }
 
         tr {
-            display: table;
-            width: 100%;
-            table-layout: fixed;
+            display: block;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            padding: 10px;
         }
 
-        th,
-        td {
-            display: table-cell;
-            text-align: center;
-            vertical-align: middle;
+        td::before {
+            content: attr(data-label);
+            font-weight: bold;
+            display: inline-block;
+            width: 150px;
+            text-align: left;
         }
 
         .matches.index .d-flex {
@@ -72,6 +81,7 @@
         }
     }
 </style>
+
 
 
 <form method="post" action="/home/index">
