@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        <table cellpadding="0" cellspacing="0" class="table">
+        <table cellpadding="0" cellspacing="0" class="table table-bordered table-striped table-responsive">
             <thead>
                 <tr>
                     <th><?= __('Id') ?></th>
