@@ -44,7 +44,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 </head>
 
 <body>
-    <nav class="top-nav">
+    <nav class="top-nav mt-4">
         <div class="top-nav-title">
             <a href="<?= $this->Url->build('/home/index') ?>"><span>FTB</span>Predict</a>
         </div>
