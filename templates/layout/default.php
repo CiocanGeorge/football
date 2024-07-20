@@ -52,7 +52,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <a target="_blank" rel="noopener" href="/home/index">AZI</a>
         </div>
     </nav>
-    <main class="main">
+    <main class="main mt-2">
         <div class="container">
             <?= $this->Flash->render() ?>
             <?= $this->fetch('content') ?>
