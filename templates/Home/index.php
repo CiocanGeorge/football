@@ -31,7 +31,7 @@
 
 
     <div class="matches index content">
-        <div class="row">
+        <div class="row mb-2">
             <h3 class="col-md-3 col-12"><?= __('Matches') ?></h3>
             <div class="d-flex col-md-9 col-12 justify-content-end">
                 <button id="prevDay" class="btn btn-outline-secondary">&lt;</button>
