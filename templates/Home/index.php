@@ -26,7 +26,6 @@
 </style>
 
 
-<form method="post" action="/home/index">
     <input type="hidden" name="_csrfToken" value="<?= $this->request->getAttribute('csrfToken') ?>">
 
 
@@ -88,7 +87,6 @@
             </table>
         </div>
     </div>
-</form>
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
