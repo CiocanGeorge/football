@@ -31,6 +31,11 @@ use Cake\Validation\Validator;
  */
 class CompetitionsTable extends Table
 {
+
+
+    const COMPETITIONS = [
+        "Campeonato Brasileiro Série A" => "Brazilia - Seria A",
+    ];
     /**
      * Initialize method
      *

@@ -60,13 +60,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($matches as $match) : ?>
+                    <?php
+
+                            use App\Model\Table\CompetitionsTable;
+
+ foreach ($matches as $match) : ?>
                         <tr>
                             <td><?= h($match['id']) ?></td>
                             <td><?= date("Y-m-d H:i:s", strtotime($match['utcDate'] . " +3 hours")) ?></td>
                             <td><?= h($match['status']) ?></td>
                             <td>
-                                <?= $match['competitions']['name'] ?>
+                                <?= CompetitionsTable::COMPETITIONS[$match['competitions']['name']]; ?>
                             </td>
                             <td>
                                 <img src="<?= $match['homeLogo'] ?>" />
