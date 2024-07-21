@@ -35,6 +35,8 @@ class CompetitionsTable extends Table
 
     const COMPETITIONS = [
         "Campeonato Brasileiro Série A" => "Brazilia - Seria A",
+        "Eredivisie" => "OLANDA - Eredivisie",
+        "Championship" => "ANGLIA - Championship"
     ];
     /**
      * Initialize method
