@@ -70,7 +70,7 @@
                             <td><?= date("Y-m-d H:i:s", strtotime($match['utcDate'] . " +3 hours")) ?></td>
                             <td><?= h($match['status']) ?></td>
                             <td>
-                                <?= CompetitionsTable::COMPETITIONS[$match['competitions']['name']]; ?>
+                                <?= CompetitionsTable::COMPETITIONS[$match['competitions']['name']] ?? $match['competitions']['name']; ?>
                             </td>
                             <td>
                                 <img src="<?= $match['homeLogo'] ?>" />
