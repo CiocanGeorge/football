@@ -26,7 +26,7 @@
 </style>
 
 
-<form method="post" action="/home/index">
+<form method="post">
     <input type="hidden" name="_csrfToken" value="<?= $this->request->getAttribute('csrfToken') ?>">
 
 
