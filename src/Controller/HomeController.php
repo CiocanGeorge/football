@@ -63,13 +63,6 @@ class HomeController extends Controller
             $matches[$key]['Prediction'] = PredictionsTable::getByMatchId($match['id']);
         }
 
-        if ($this->request->is('ajax')) {
-            $this->set([
-                'matches' => $matches,
-                '_serialize' => ['matches']
-            ]);
-            return;
-        } 
         
         $this->set('data', $date);
         $this->set(compact('matches'));
