@@ -105,7 +105,7 @@
             currentDate.setDate(currentDate.getDate() + days);
             const newDate = currentDate.toISOString().split('T')[0];
             datePicker.value = newDate;
-            // fetchData(newDate);
+            fetchData(newDate);
         };
 
         // Event listeners for the buttons
