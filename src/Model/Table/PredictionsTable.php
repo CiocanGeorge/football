@@ -145,7 +145,7 @@ class PredictionsTable extends Table
         $procent = 0;
         foreach($predictions as $key => $pred)
         {
-           $procent += $pred>=2 ? 100 : 0;
+           $procent += $pred>2 ? 100 : 0;
         }
         $procent = $procent/count($predictions);
 
