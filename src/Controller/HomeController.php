@@ -68,9 +68,11 @@ class HomeController extends Controller
                 'matches' => $matches,
                 '_serialize' => ['matches']
             ]);
-        } else {
-            $this->set('data', $date);
-            $this->set(compact('matches'));
-        }
+            return;
+        } 
+        
+        $this->set('data', $date);
+        $this->set(compact('matches'));
+        
     }
 }
