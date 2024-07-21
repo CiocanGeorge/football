@@ -66,7 +66,7 @@
                             <td><?= date("Y-m-d H:i:s", strtotime($match['utcDate'] . " +3 hours")) ?></td>
                             <td><?= h($match['status']) ?></td>
                             <td>
-                                <?= $match['competition']['name'] ?>
+                                <?= $match['competitions']['name'] ?>
                             </td>
                             <td>
                                 <img src="<?= $match['homeLogo'] ?>" />
