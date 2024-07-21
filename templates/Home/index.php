@@ -26,6 +26,7 @@
 </style>
 
 
+<form method="post" action="/home/index">
     <input type="hidden" name="_csrfToken" value="<?= $this->request->getAttribute('csrfToken') ?>">
 
 
@@ -65,7 +66,7 @@
                             <td><?= date("Y-m-d H:i:s", strtotime($match['utcDate'] . " +3 hours")) ?></td>
                             <td><?= h($match['status']) ?></td>
                             <td>
-                                <?= $match['competitions']['name'] ?>
+                                <?= $match['competition']['name'] ?>
                             </td>
                             <td>
                                 <img src="<?= $match['homeLogo'] ?>" />
@@ -87,6 +88,7 @@
             </table>
         </div>
     </div>
+</form>
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
