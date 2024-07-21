@@ -160,10 +160,15 @@ class MatchesTable extends Table
                 'scores.full_time_away',
                 'scores.half_time_home',
                 'scores.half_time_away',
+                'competitions.name'
             ])
             ->innerJoin(
                 ['scores' => 'scores'],
-                ['scores.match_id = matches.id']
+                ['scores.match_id = matches.id'],
+            )
+            ->innerJoin(
+                ['competitions' => 'competitions'],
+                ['competitions.id = matches.competitionId']
             )
             ->where(['matches.utcDate LIKE' => $date . '%']); // Utilizăm LIKE pentru coloana utcDate
         return $results->toArray();

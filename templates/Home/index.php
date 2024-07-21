@@ -47,6 +47,7 @@
                         <th><?= __('Id') ?></th>
                         <th><?= __('Date') ?></th>
                         <th><?= __('Status') ?></th>
+                        <th><?= __('Competitie') ?></th>
                         <th><?= __('Home Team') ?></th>
                         <th><?= __('Score') ?></th>
                         <th><?= __('Away Team') ?></th>
@@ -66,6 +67,9 @@
                             <td>
                                 <img src="<?= $match['homeLogo'] ?>"/>
                                 <?= $match['homeName'] ?>
+                            </td>
+                            <td>
+                            <?= $match['competition']['name'] ?>
                             </td>
                             <td><?= h($match['scores']['full_time_home']) ?> - <?= h($match['scores']['full_time_away']) ?></td>
                             <td>
@@ -120,7 +124,7 @@
 
             // Make Ajax request using jQuery
             $.post('/home/index', {
-                    method: 'POST',
+                    method: 'GET',
                     dataType: 'json',
                     headers: {
                         'X-CSRF-Token': $('input[name=_csrfToken]').val() // Trimite token-ul CSRF în capul cererii
