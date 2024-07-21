@@ -157,8 +157,6 @@
         });
     };
 
-    // Fetch data for today's date on page load
-    // fetchData(datePicker.value);
 });
 
 </script>
