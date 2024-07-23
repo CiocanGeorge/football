@@ -24,7 +24,7 @@ class GeneratePredictionShell extends Shell
                 $date = date("Y-m-d",strtotime("$year-$month-$day"));
                 $matchs = MatchesTable::getByDate($date);
                 foreach ($matchs as $match) {
-                    $last5Match = MatchesTable::getLast5Match($match['homeTeamId'], $match['awayTeamId']);
+                    $last5Match = MatchesTable::getLast5Match($match['homeTeamId'], $match['awayTeamId'],$match['id']);
                     if (count($last5Match) > 3) {
                         $procentOver0 = PredictionsTable::getOver0($last5Match);
                         $procentOver1 = PredictionsTable::getOver1($last5Match);
