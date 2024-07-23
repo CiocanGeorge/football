@@ -28,7 +28,11 @@ class GetMatchShell extends Shell
             // 2020,
             // 2021,
             // 2022,
+<<<<<<< HEAD
             //2023,
+=======
+            // 2023,
+>>>>>>> 005595698ebdb2a400bf61f3938d1c2f33cedd74
             2024
         ];
         $competions = CompetitionsTable::getAll();

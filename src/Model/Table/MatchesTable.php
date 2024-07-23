@@ -174,7 +174,7 @@ class MatchesTable extends Table
         return $results->toArray();
     }
 
-    public static function getLast5Match($homeTeamId, $awayTeamId)
+    public static function getLast5Match($homeTeamId, $awayTeamId,$matchId)
     {
         $results = self::getObject()->find()
             ->select([
@@ -201,7 +201,8 @@ class MatchesTable extends Table
                         'matches.awayTeamId' => $homeTeamId
                     ]
                 ],
-                'scores.full_time_home IS NOT NULL'
+                'scores.full_time_home IS NOT NULL',
+                'matches.id != ' => $matchId
             ])->orderDesc("matches.utcDate"); // Utilizăm LIKE pentru coloana utcDate
         return $results->toArray();
     }
