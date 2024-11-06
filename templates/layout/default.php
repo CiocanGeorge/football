@@ -50,6 +50,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </div>
         <div class="top-nav-links">
             <a rel="noopener" href="/home/index">AZI</a>
+            <a rel="noopener" href="/home/statistics">Statistici</a>
         </div>
     </nav>
     <main class="main mt-2">

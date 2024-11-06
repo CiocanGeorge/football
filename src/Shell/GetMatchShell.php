@@ -35,36 +35,31 @@ class GetMatchShell extends Shell
         $index = 0;
         $total = count($competions);
         $indexRequest = 1;
-        foreach($competions as $comp)
-        {
+        foreach ($competions as $comp) {
             $index++;
-            foreach($years as $year)
-            {
-                echo $index."/".$total." get matches for: ".$comp['code']." - year: ".$year."\n";
-                self::getMatch($comp['code'],$year);
+            foreach ($years as $year) {
+                echo $index . "/" . $total . " get matches for: " . $comp['code'] . " - year: " . $year . "\n";
+                self::getMatch($comp['code'], $year);
                 $indexRequest++;
-                if($indexRequest === 9)
-                {
+                if ($indexRequest === 9) {
                     $indexRequest = 1;
-                    for($i = 1; $i <=6 ; $i++)
-                    {
+                    for ($i = 1; $i <= 6; $i++) {
                         sleep(10);
-                        echo ($i*10)."secund - ";
+                        echo ($i * 10) . "secund - ";
                     }
                     echo "\n";
                 }
             }
-            
         }
         $this->out('End get matches');
     }
 
-    public function getMatch($competition,$year)
+    public function getMatch($competition, $year)
     {
         $apiKey = ApiTable::getApi();
-        $uri = 'http://api.football-data.org/v4/competitions/'.$competition.'/matches?season='.$year;
+        $uri = 'http://api.football-data.org/v4/competitions/' . $competition . '/matches?season=' . $year;
         $reqPrefs['http']['method'] = 'GET';
-        $reqPrefs['http']['header'] = 'X-Auth-Token: '.$apiKey; // Înlocuiți cu cheia API reală
+        $reqPrefs['http']['header'] = 'X-Auth-Token: ' . $apiKey; // Înlocuiți cu cheia API reală
 
         $stream_context = stream_context_create($reqPrefs);
         $response = file_get_contents($uri, false, $stream_context);
@@ -72,11 +67,11 @@ class GetMatchShell extends Shell
 
         $matchesTable = TableRegistry::getTableLocator()->get('Matches');
         $scoresTable = TableRegistry::getTableLocator()->get('Scores');
-        if(empty($matchesData)){
+        if (empty($matchesData)) {
             return;
         }
         foreach ($matchesData as $data) {
-            try{
+            try {
                 $entity = $matchesTable->findOrCreate([
                     'id' => $data->id
                 ], function ($entity) use ($data) {
@@ -85,7 +80,7 @@ class GetMatchShell extends Shell
                     $entity->matchday = $data->matchday;
                     $entity->stage = $data->stage ?? null;
                     $entity->lastUpdated = date('Y-m-d H:i:s', strtotime($data->lastUpdated));
-                    $entity->homeTeamId = $data->homeTeam->id;
+                    $entity->homeTeamId = $data->homeTeam->id ?? null;
                     $entity->awayTeamId = $data->awayTeam->id;
                     $entity->areaId = $data->area->id;
                     $entity->competitionId = $data->competition->id;
@@ -101,7 +96,7 @@ class GetMatchShell extends Shell
                 $entity->matchday = $data->matchday;
                 $entity->stage = $data->stage ?? null;
                 $entity->lastUpdated = date('Y-m-d H:i:s', strtotime($data->lastUpdated));
-                $entity->homeTeamId = $data->homeTeam->id;
+                $entity->homeTeamId = $data->homeTeam->id ?? null;
                 $entity->awayTeamId = $data->awayTeam->id;
                 $entity->areaId = $data->area->id;
                 $entity->competitionId = $data->competition->id;
@@ -111,8 +106,8 @@ class GetMatchShell extends Shell
                 $entity->homeLogo = $data->homeTeam->crest;
                 $entity->awayLogo = $data->awayTeam->crest;
                 $matchesTable->save($entity);
-    
-                if (!empty($data->id)) {    
+
+                if (!empty($data->id)) {
                     //TODO sa fac update daca exista
                     // Salvare scor
                     $score = $scoresTable->findOrCreate(
@@ -141,12 +136,10 @@ class GetMatchShell extends Shell
                 } else {
                     $this->err('Nu s-a putut salva meciul ' . $data->id);
                 }
-            }catch(Exception $e)
-            {
-                var_dump($e->getMessage());die();
+            } catch (Exception $e) {
+                var_dump($e->getMessage());
+                die();
             }
-           
-            
         }
 
         $this->out('Datele meciurilor au fost inserate cu succes.');

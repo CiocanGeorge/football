@@ -18,6 +18,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Model\Entity\Prediction;
 use App\Model\Table\CompetitionsTable;
 use App\Model\Table\MatchesTable;
 use App\Model\Table\PredictionsTable;
@@ -63,9 +64,25 @@ class HomeController extends Controller
             $matches[$key]['Prediction'] = PredictionsTable::getByMatchId($match['id']);
         }
 
-        
+
         $this->set('data', $date);
         $this->set(compact('matches'));
-        
+    }
+
+    public function statistics()
+    {
+        $year = date("Y");
+        $months = [
+            "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"
+        ];
+        foreach ($months as $key => $month) {
+
+            $data[$month]["Prima repriza peste 0.5"] = PredictionsTable::getStats("over0FirstHalf", $year . "-" . $month);
+            $data[$month]["Peste 0.5"] = PredictionsTable::getStats("over0", $year . "-" . $month);
+            $data[$month]["Peste 1.5"] = PredictionsTable::getStats("over1", $year . "-" . $month);
+            $data[$month]["Peste 2.5"] = PredictionsTable::getStats("over2", $year . "-" . $month);
+            $data[$month]["Ambele echipe marcheaza"] = PredictionsTable::getStats("gg", $year . "-" . $month);
+        }
+        $this->set('data', $data);
     }
 }

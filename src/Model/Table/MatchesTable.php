@@ -206,4 +206,35 @@ class MatchesTable extends Table
             ])->orderDesc("matches.utcDate"); // Utilizăm LIKE pentru coloana utcDate
         return $results->toArray();
     }
+
+    public static function getLast5MatchCurrent($temaId,$matchId)
+    {
+        $results = self::getObject()->find()
+            ->select([
+                'matches.id',
+                'matches.utcDate',
+                'matches.status',
+                'scores.full_time_home',
+                'scores.full_time_away',
+                'scores.half_time_home',
+                'scores.half_time_away',
+            ])
+            ->innerJoin(
+                ['scores' => 'scores'], // Specificăm tabela scores și aliasul său
+                ['scores.match_id = matches.id']
+            ) // Condiția pentru INNER JOIN) // Adăugăm tabela scores în interogare pentru INNER JOIN
+            ->where([
+                'OR' => [
+                    [
+                        'matches.homeTeamId' => $temaId,
+                    ],
+                    [
+                        'matches.awayTeamId' => $temaId
+                    ]
+                ],
+                'scores.full_time_home IS NOT NULL',
+                'matches.id != ' => $matchId
+            ])->orderDesc("matches.utcDate"); // Utilizăm LIKE pentru coloana utcDate
+        return $results->toArray();
+    }
 }

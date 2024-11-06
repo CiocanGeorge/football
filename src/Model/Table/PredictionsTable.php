@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Model\Table;
@@ -28,6 +29,8 @@ use Cake\Validation\Validator;
  */
 class PredictionsTable extends Table
 {
+
+    const MAX_MATCH = 5;
     /**
      * Initialize method
      *
@@ -78,7 +81,8 @@ class PredictionsTable extends Table
 
         return $validator;
     }
-    public static function getObject() {
+    public static function getObject()
+    {
         return TableRegistry::getTableLocator()->get('predictions');
     }
 
@@ -89,108 +93,182 @@ class PredictionsTable extends Table
         return $query;
     }
 
-    public static function getOver0($arrayMatch)
+    public static function getOver0($arrayMatch, $arrayHomeMatch, $arrayAwwayMatch)
+    {
+        $betweenTeam = self::getOver0Percent($arrayMatch);
+        $homes = self::getOver0Percent($arrayHomeMatch);
+        $aways = self::getOver0Percent($arrayAwwayMatch);
+        // return ($homes + $aways) / 2;
+        return ($betweenTeam + $homes + $aways) / 3;
+    }
+
+    public static function getOver1($arrayMatch, $arrayHomeMatch, $arrayAwwayMatch)
+    {
+        $betweenTeam = self::getOver1Percent($arrayMatch);
+        $homes = self::getOver1Percent($arrayHomeMatch);
+        $aways = self::getOver1Percent($arrayAwwayMatch);
+        // return ($homes + $aways) / 2;
+        return ($betweenTeam + $homes + $aways) / 3;
+    }
+
+    public static function getOver2($arrayMatch, $arrayHomeMatch, $arrayAwwayMatch)
+    {
+        $betweenTeam = self::getOver2Percent($arrayMatch);
+        $homes = self::getOver2Percent($arrayHomeMatch);
+        $aways = self::getOver2Percent($arrayAwwayMatch);
+        // return ($homes + $aways) / 2;
+        return ($betweenTeam + $homes + $aways) / 3;
+    }
+
+
+    public static function getOver0FirstHalf($arrayMatch, $arrayHomeMatch, $arrayAwwayMatch)
+    {
+
+        $betweenTeam = self::getOver0FirstHalfPercent($arrayMatch);
+        $homes = self::getOver0FirstHalfPercent($arrayHomeMatch);
+        $aways = self::getOver0FirstHalfPercent($arrayAwwayMatch);
+        // return ($homes + $aways) / 2;
+        return ($betweenTeam + $homes + $aways) / 3;
+    }
+
+    public static function getGG($arrayMatch, $arrayHomeMatch, $arrayAwwayMatch)
+    {
+
+        $betweenTeam = self::getGGPercent($arrayMatch);
+        $homes = self::getGGPercent($arrayHomeMatch);
+        $aways = self::getGGPercent($arrayAwwayMatch);
+        // return ($homes + $aways) / 2;
+        return ($betweenTeam + $homes + $aways) / 3;
+    }
+
+    public static function getOver0Percent($arrayMatch)
     {
         $predictions = [];
-        foreach($arrayMatch as $key => $match)
-        {
-            if($key == 5)
-            {
+        foreach ($arrayMatch as $key => $match) {
+            if ($key == self::MAX_MATCH) {
                 break;
             }
             $predictions[$key] = $match['scores']['full_time_home'] + $match['scores']['full_time_away'];
         }
         $procent = 0;
-        foreach($predictions as $key => $pred)
-        {
-           $procent += $pred>=1 ? 100 : 0;
+        foreach ($predictions as $key => $pred) {
+            $procent += $pred >= 1 ? 100 : 0;
         }
-        $procent = $procent/count($predictions);
+        $procent = $procent / count($predictions);
 
         return $procent;
     }
 
-    public static function getOver1($arrayMatch)
+
+
+    public static function getOver1Percent($arrayMatch)
     {
         $predictions = [];
-        foreach($arrayMatch as $key => $match)
-        {
-            if($key == 5)
-            {
+        foreach ($arrayMatch as $key => $match) {
+            if ($key == self::MAX_MATCH) {
                 break;
             }
             $predictions[$key] = $match['scores']['full_time_home'] + $match['scores']['full_time_away'];
         }
         $procent = 0;
-        foreach($predictions as $key => $pred)
-        {
-           $procent += $pred>=2 ? 100 : 0;
+        foreach ($predictions as $key => $pred) {
+            $procent += $pred >= 2 ? 100 : 0;
         }
-        $procent = $procent/count($predictions);
+        $procent = $procent / count($predictions);
 
         return $procent;
     }
 
-    public static function getOver2($arrayMatch)
+
+
+    public static function getOver2Percent($arrayMatch)
     {
         $predictions = [];
-        foreach($arrayMatch as $key => $match)
-        {
-            if($key == 5)
-            {
+        foreach ($arrayMatch as $key => $match) {
+            if ($key == self::MAX_MATCH) {
                 break;
             }
             $predictions[$key] = $match['scores']['full_time_home'] + $match['scores']['full_time_away'];
         }
         $procent = 0;
-        foreach($predictions as $key => $pred)
-        {
-           $procent += $pred>2 ? 100 : 0;
+        foreach ($predictions as $key => $pred) {
+            $procent += $pred > 2 ? 100 : 0;
         }
-        $procent = $procent/count($predictions);
+        $procent = $procent / count($predictions);
 
         return $procent;
     }
 
-    public static function getOver0FirstHalf($arrayMatch)
+
+    public static function getOver0FirstHalfPercent($arrayMatch)
     {
         $predictions = [];
-        foreach($arrayMatch as $key => $match)
-        {
-            if($key == 5)
-            {
+        foreach ($arrayMatch as $key => $match) {
+            if ($key == self::MAX_MATCH) {
                 break;
             }
             $predictions[$key] = $match['scores']['half_time_home'] + $match['scores']['half_time_away'];
         }
         $procent = 0;
-        foreach($predictions as $key => $pred)
-        {
-           $procent += $pred>0 ? 100 : 0;
+        foreach ($predictions as $key => $pred) {
+            $procent += $pred > 0 ? 100 : 0;
         }
-        $procent = $procent/count($predictions);
+        $procent = $procent / count($predictions);
 
         return $procent;
     }
 
-    public static function getGG($arrayMatch)
+
+
+
+
+
+    public static function getGGPercent($arrayMatch)
     {
         $predictions = [];
-        foreach($arrayMatch as $key => $match)
-        {
-            if($key == 5)
-            {
+        foreach ($arrayMatch as $key => $match) {
+            if ($key == self::MAX_MATCH) {
                 break;
             }
             $predictions[$key] = ($match['scores']['full_time_home'] > 0) && ($match['scores']['full_time_away'] > 0);
         }
         $procent = 0;
-        foreach($predictions as $key => $pred)
-        {
-           $procent += $pred ? 100 : 0;
+        foreach ($predictions as $key => $pred) {
+            $procent += $pred ? 100 : 0;
         }
-        $procent = $procent/count($predictions);
+        $procent = $procent / count($predictions);
 
         return $procent;
+    }
+
+
+    public static function getStats($nameStats, $month)
+    {
+        $data = [];
+        $result = self::getObject()->find('all');
+        $result->innerJoin(
+            ['matches' => 'matches'],
+            ['matches.id = predictions.matchId']
+        );
+        $result->innerJoin(
+            ['scores' => 'scores'],
+            ['scores.match_id = predictions.matchId']
+        );
+        $result->where(['predictions.' . $nameStats => 100, 'matches.utcDate LIKE ' => $month . "%"]);
+
+        $respons = $result;
+        $data['total'] = count($respons->toArray());
+
+        $result->where(['scores.full_time_home IS NOT NULL', 'scores.full_time_away IS NOT NULL']);
+        $respons = $result;
+        $data['played'] = count($respons->toArray()) > 0 ? count($respons->toArray()) : 1;
+
+        $result->where(['scores.full_time_home > ' => 0, 'scores.full_time_away > ' => 0]);
+        $respons = $result;
+        $data['wins'] = count($respons->toArray());
+
+        $data['rate'] = intval(($data['wins'] * 100) / $data['played']);
+
+        return $data;
     }
 }

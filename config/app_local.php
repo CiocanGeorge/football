@@ -44,8 +44,8 @@ return [
              */
             //'port' => 'non_standard_port_number',
 
-            'username' => 'football',
-            'password' => 'football',
+            'username' => 'root',
+            'password' => '',
 
             'database' => 'football',
             /*
