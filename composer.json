@@ -9,6 +9,9 @@
         "cakephp/cakephp": "^4.5.0",
         "cakephp/migrations": "^3.7",
         "cakephp/plugin-installer": "^1.3",
+        "google/cloud-firestore": "^0.1.0",
+        "kreait/firebase-php": "^7.15",
+        "ktamas77/firebase-php": "^3.0",
         "mobiledetect/mobiledetectlib": "^3.74"
     },
     "require-dev": {

@@ -271,4 +271,31 @@ class PredictionsTable extends Table
 
         return $data;
     }
+
+    public static function getAllStatsOver50($data = null)
+    {
+        $result = self::getObject()->find('all');
+        $result->innerJoin(
+            ['matches' => 'matches'],
+            ['matches.id = predictions.matchId']
+        );
+        $result->select([
+            'matches.id',
+            'matches.utcDate',
+            'matches.homeName',
+            'matches.awayName',
+            'matches.homeLogo',
+            'matches.awayLogo',
+            'predictions.over2',
+            'predictions.over0',
+            'predictions.over1',
+            'predictions.over0FirstHalf',
+            'predictions.gg',
+        ]);
+        if (!empty($data)) {
+            $result->where(['matches.utcDate LIKE ' => $data . "%"]);
+        }
+
+        return $result->toArray();
+    }
 }
