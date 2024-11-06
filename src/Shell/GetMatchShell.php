@@ -72,6 +72,11 @@ class GetMatchShell extends Shell
         }
         foreach ($matchesData as $data) {
             try {
+                if (empty($data->homeTeam->id) || empty($data->awayTeam->id)) {
+                    echo "home or away team id is null";
+                    var_dump($data);
+                    continue;
+                }
                 $entity = $matchesTable->findOrCreate([
                     'id' => $data->id
                 ], function ($entity) use ($data) {
@@ -80,7 +85,7 @@ class GetMatchShell extends Shell
                     $entity->matchday = $data->matchday;
                     $entity->stage = $data->stage ?? null;
                     $entity->lastUpdated = date('Y-m-d H:i:s', strtotime($data->lastUpdated));
-                    $entity->homeTeamId = $data->homeTeam->id ?? null;
+                    $entity->homeTeamId = $data->homeTeam->id;
                     $entity->awayTeamId = $data->awayTeam->id;
                     $entity->areaId = $data->area->id;
                     $entity->competitionId = $data->competition->id;
@@ -96,7 +101,7 @@ class GetMatchShell extends Shell
                 $entity->matchday = $data->matchday;
                 $entity->stage = $data->stage ?? null;
                 $entity->lastUpdated = date('Y-m-d H:i:s', strtotime($data->lastUpdated));
-                $entity->homeTeamId = $data->homeTeam->id ?? null;
+                $entity->homeTeamId = $data->homeTeam->id;
                 $entity->awayTeamId = $data->awayTeam->id;
                 $entity->areaId = $data->area->id;
                 $entity->competitionId = $data->competition->id;
