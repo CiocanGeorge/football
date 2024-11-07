@@ -47,7 +47,7 @@ class FirebaseMatchShell extends Shell
                         'G-2-5' => (int)$match['over2'],
                         'G-1-5' => (int)$match['over1'],
                         'G-1H0-5' => (int)$match['over0FirstHalf'],
-                        'gg' => (int)$match['over1'],
+                        'gg' => (int)$match['gg'],
                     ],
                     date("Y-m-d H:i:s", strtotime($match['matches']['utcDate'] . " +2 hours"))
                 );
