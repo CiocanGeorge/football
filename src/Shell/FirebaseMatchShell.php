@@ -23,7 +23,7 @@ class FirebaseMatchShell extends Shell
 
 
         $this->database = $firebase->createDatabase();
-        $matches = PredictionsTable::getAllStatsOver50();
+        $matches = PredictionsTable::getAllStatsOver50(date("Y-m-d"));
         foreach ($matches as $match) {
             $this->adaugaMeci(
                 date("Y-m-d", strtotime($match['matches']["utcDate"])),
