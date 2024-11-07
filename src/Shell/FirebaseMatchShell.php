@@ -26,7 +26,7 @@ class FirebaseMatchShell extends Shell
         $date = date("Y-m-d");
         for ($i = 0; $i < 3; $i++) {
             if ($i > 0) {
-                $incrementDate = " +" . $i . +" days";
+                $incrementDate = " +" . $i . +" day";
                 var_dump($incrementDate);
                 $date = date("Y-m-d", strtotime($incrementDate));
             }
