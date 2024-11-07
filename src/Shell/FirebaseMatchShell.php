@@ -49,7 +49,7 @@ class FirebaseMatchShell extends Shell
                         'G-1H0-5' => (int)$match['over0FirstHalf'],
                         'gg' => (int)$match['over1'],
                     ],
-                    date("Y-m-d H:i:s", strtotime($match['matches']['utcDate']))
+                    date("Y-m-d H:i:s", strtotime($match['matches']['utcDate'] . " +2 hours"))
                 );
                 echo "Datele meciului a fost adăugate!\n";
             }

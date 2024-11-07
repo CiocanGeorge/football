@@ -62,12 +62,12 @@
                 <tbody>
                     <?php
 
-                            use App\Model\Table\CompetitionsTable;
+                    use App\Model\Table\CompetitionsTable;
 
- foreach ($matches as $match) : ?>
+                    foreach ($matches as $match) : ?>
                         <tr>
                             <td><?= h($match['id']) ?></td>
-                            <td><?= date("Y-m-d H:i:s", strtotime($match['utcDate'] . " +3 hours")) ?></td>
+                            <td><?= date("Y-m-d H:i:s", strtotime($match['utcDate'] . " +2 hours")) ?></td>
                             <td><?= h($match['status']) ?></td>
                             <td>
                                 <?= CompetitionsTable::COMPETITIONS[$match['competitions']['name']] ?? $match['competitions']['name']; ?>
@@ -96,46 +96,46 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
-    const datePicker = document.getElementById('datePicker');
-    const prevDay = document.getElementById('prevDay');
-    const nextDay = document.getElementById('nextDay');
-    const matchesTableBody = document.getElementById('matchesTableBody');
+        const datePicker = document.getElementById('datePicker');
+        const prevDay = document.getElementById('prevDay');
+        const nextDay = document.getElementById('nextDay');
+        const matchesTableBody = document.getElementById('matchesTableBody');
 
-    // Function to change date by a specified number of days
-    const changeDate = (days) => {
-        const currentDate = new Date(datePicker.value);
-        currentDate.setDate(currentDate.getDate() + days);
-        const newDate = currentDate.toISOString().split('T')[0];
-        datePicker.value = newDate;
-        // fetchData(newDate);
-    };
+        // Function to change date by a specified number of days
+        const changeDate = (days) => {
+            const currentDate = new Date(datePicker.value);
+            currentDate.setDate(currentDate.getDate() + days);
+            const newDate = currentDate.toISOString().split('T')[0];
+            datePicker.value = newDate;
+            // fetchData(newDate);
+        };
 
-    // Event listeners for the buttons
-    prevDay.addEventListener('click', () => changeDate(-1));
-    nextDay.addEventListener('click', () => changeDate(1));
+        // Event listeners for the buttons
+        prevDay.addEventListener('click', () => changeDate(-1));
+        nextDay.addEventListener('click', () => changeDate(1));
 
-    // Event listener for the date picker
-    datePicker.addEventListener('change', (event) => {
-        // fetchData(event.target.value);
-    });
+        // Event listener for the date picker
+        datePicker.addEventListener('change', (event) => {
+            // fetchData(event.target.value);
+        });
 
-    // Function to fetch data for a specific date using jQuery POST
-    const fetchData = (date) => {
-        const matchesTableBody = $('#matchesTableBody'); // Assuming you have a table body element with id="matchesTableBody"
+        // Function to fetch data for a specific date using jQuery POST
+        const fetchData = (date) => {
+            const matchesTableBody = $('#matchesTableBody'); // Assuming you have a table body element with id="matchesTableBody"
 
-        // Make Ajax request using jQuery
-        $.ajax({
-            url: '/home/index',
-            method: 'POST',
-            data: {
-                date: date,
-                _csrfToken: $('input[name=_csrfToken]').val() // Trimite token-ul CSRF în capul cererii
-            },
-            dataType: 'json',
-            success: function(data) {
-                matchesTableBody.empty(); // Clear existing table data
-                $.each(data.matches, function(index, match) {
-                    const row = `
+            // Make Ajax request using jQuery
+            $.ajax({
+                url: '/home/index',
+                method: 'POST',
+                data: {
+                    date: date,
+                    _csrfToken: $('input[name=_csrfToken]').val() // Trimite token-ul CSRF în capul cererii
+                },
+                dataType: 'json',
+                success: function(data) {
+                    matchesTableBody.empty(); // Clear existing table data
+                    $.each(data.matches, function(index, match) {
+                        const row = `
                         <tr>
                             <td>${match.id}</td>
                             <td>${match.utcDate}</td>
@@ -151,16 +151,15 @@
                             <td class="${(match.scores.full_time_home > 0 && match.scores.full_time_away > 0) ? 'win' : 'lose'}">${match.Prediction && match.Prediction.gg ? match.Prediction.gg + "%" : "-"}</td>
                         </tr>
                     `;
-                    matchesTableBody.append(row);
-                });
-            },
-            error: function(xhr, status, error) {
-                console.error('Error fetching data:', error);
-                matchesTableBody.html('<tr><td colspan="12">Error fetching data</td></tr>');
-            }
-        });
-    };
+                        matchesTableBody.append(row);
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching data:', error);
+                    matchesTableBody.html('<tr><td colspan="12">Error fetching data</td></tr>');
+                }
+            });
+        };
 
-});
-
+    });
 </script>
