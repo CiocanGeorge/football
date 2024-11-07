@@ -24,7 +24,7 @@ class FirebaseMatchShell extends Shell
 
         $this->database = $firebase->createDatabase();
         $date = date("Y-m-d");
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i <= 5; $i++) {
             if ($i > 0) {
                 $incrementDate = "+" . $i . " day";
                 $date = date("Y-m-d", strtotime($incrementDate, strtotime($date)));
