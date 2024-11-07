@@ -31,7 +31,7 @@ class FirebaseMatchShell extends Shell
             }
             $matches = PredictionsTable::getAllStatsOver50($date);
             foreach ($matches as $match) {
-                var_dump($match['utcDate']);
+                var_dump($match);
                 die();
                 $this->adaugaMeci(
                     date("Y-m-d", strtotime($match['matches']["utcDate"])),
