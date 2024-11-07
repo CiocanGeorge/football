@@ -48,16 +48,18 @@ class FirebaseMatchShell extends Shell
                         'G-1-5' => (int)$match['over1'],
                         'G-1H0-5' => (int)$match['over0FirstHalf'],
                         'gg' => (int)$match['over1'],
-                    ]
+                    ],
+                    $match['utcDate']
                 );
                 echo "Datele meciului a fost adăugate!\n";
             }
         }
     }
-    private function adaugaMeci($ziua, $sport, $idMeci, $gazda, $oaspete, $predictii)
+    private function adaugaMeci($ziua, $sport, $idMeci, $gazda, $oaspete, $predictii, $ora)
     {
         // Structura pentru datele meciului
         $data = [
+            'ora' => $ora,
             'echipaGazda' => $gazda,
             'echipaOaspete' => $oaspete,
             'predictii' => $predictii
