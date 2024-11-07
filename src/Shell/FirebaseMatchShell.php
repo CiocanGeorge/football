@@ -14,7 +14,7 @@ class FirebaseMatchShell extends Shell
     {
         try {
             $firebase = (new Factory)
-                ->withServiceAccount(__DIR__ . '/../../serviceAccountKey.json') // Specifică calea către fișierul serviceAccountKey.json
+                ->withServiceAccount(realpath(__DIR__ . '/../../serviceAccountKey.json')) // Specifică calea către fișierul serviceAccountKey.json
                 ->withDatabaseUri('https://statistics-e6ffc-default-rtdb.europe-west1.firebasedatabase.app/');
         } catch (Exception $e) {
             var_dump($e->getMessage());
