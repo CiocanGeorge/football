@@ -5,15 +5,22 @@ namespace App\Shell;
 use App\Model\Table\PredictionsTable;
 use Kreait\Firebase\Factory;
 use Cake\Console\Shell;
+use Exception;
 
 class FirebaseMatchShell extends Shell
 {
 
     public function main()
     {
-        $firebase = (new Factory)
-            ->withServiceAccount(__DIR__ . '/../../serviceAccountKey.json') // Specifică calea către fișierul serviceAccountKey.json
-            ->withDatabaseUri('https://statistics-e6ffc-default-rtdb.europe-west1.firebasedatabase.app/');
+        try {
+            $firebase = (new Factory)
+                ->withServiceAccount(__DIR__ . '/../../serviceAccountKey.json') // Specifică calea către fișierul serviceAccountKey.json
+                ->withDatabaseUri('https://statistics-e6ffc-default-rtdb.europe-west1.firebasedatabase.app/');
+        } catch (Exception $e) {
+            var_dump($e->getMessage());
+            die();
+        }
+
 
         $this->database = $firebase->createDatabase();
         $matches = PredictionsTable::getAllStatsOver50();
