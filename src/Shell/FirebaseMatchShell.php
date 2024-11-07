@@ -50,7 +50,6 @@ class FirebaseMatchShell extends Shell
                     ]
                 );
                 echo "Datele meciului a fost adăugate!\n";
-                die();
             }
         }
     }
