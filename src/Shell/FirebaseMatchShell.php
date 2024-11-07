@@ -26,7 +26,9 @@ class FirebaseMatchShell extends Shell
         $date = date("Y-m-d");
         for ($i = 0; $i < 3; $i++) {
             if ($i > 0) {
-                $date = date("Y-m-d", strtotime(" +" . $i . +" days"));
+                $incrementDate = " +" . $i . +" days";
+                var_dump($incrementDate);
+                $date = date("Y-m-d", strtotime($incrementDate));
             }
             $matches = PredictionsTable::getAllStatsOver50($date);
             foreach ($matches as $match) {
